@@ -1,16 +1,5 @@
-var mongoose    = require('mongoose');
-
-mongoose.connect('mongodb://localhost/simple');
-
-var personSchema = {
-  id: Number,
-  first_name: String,
-  last_name: String,
-  email: String,
-  country: String
-
-}
-var Person = mongoose.model('Person', personSchema, 'people');
+var db = require('./mongo.js');
+var Person = db.personinit();
 
 module.exports = function(app){
 
@@ -49,7 +38,6 @@ module.exports = function(app){
   });
 
 
-//move mongodb stuff into seperate file
 //make function for count & any other function we need
 //write tests
 //delete from db
