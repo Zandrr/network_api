@@ -15,7 +15,7 @@ module.exports = function(app){
   app.get('/person/:id', function(req,res){
     Person.find({id:req.params.id}).find(function(err,doc){
       if(err) res.send(err);
-      res.send(doc);
+      res.status(200).send(doc);
     });
   });
 
@@ -30,7 +30,7 @@ module.exports = function(app){
   app.get('/people', function(req,res){
     Person.find(function(err,doc){
       if(err) res.send(err);
-      res.send(doc);
+      res.status(200).send(doc);
     });
   });
 

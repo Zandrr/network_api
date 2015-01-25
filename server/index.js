@@ -10,7 +10,7 @@ var express     = require('express'),
     app.set('port', process.env.PORT || 3000);
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
-    
+
     routes(app);
 
     var server = http.createServer(app);
@@ -22,3 +22,4 @@ var express     = require('express'),
 
 
 
+module.exports = app;
