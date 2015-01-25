@@ -12,11 +12,19 @@ module.exports = function(app){
 
   });
 
-  app.get('/people/:id', function(req,res){
+  app.get('/person/:id', function(req,res){
     Person.find({id:req.params.id}).find(function(err,doc){
       if(err) res.send(err);
       res.send(doc);
     });
+  });
+
+  app.delete('/person/:id', function(req,res){
+    Person.remove( {id:req.params.id}, function(err,person){
+      if(err) res.send(err);
+      res.send("removed "+req.params.id);
+    });
+
   });
 
   app.get('/people', function(req,res){
@@ -33,16 +41,15 @@ module.exports = function(app){
         res.send(doc);
       });
     });
-
-    
   });
 
 
+    
+
+};
 //make function for count & any other function we need
 //write tests
-//delete from db
 //update db
 //use cooler data
 
 
-};
