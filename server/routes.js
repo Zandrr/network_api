@@ -33,8 +33,13 @@ module.exports = function(app){
         res.send(doc);
       });
     });
+  });
 
-    
+  app.delete('/people/:id', function(req,res){
+    Person.find({id:req.params.id}).remove(function(err,doc){
+      if(err) res.send(err);
+      res.send(doc);
+    });
   });
 
 
