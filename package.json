@@ -1,0 +1,24 @@
+{
+  "name": "PersonalityAPI",
+  "version": "0.0.1",
+  "description": "Accurate personality test based on multiple submissions",
+  "main": "server/index.js",
+  "author": "Alex Campbell, Louis Bouddhou, Edward Zhu, Josh Fermin",
+  "License": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+
+  "dependencies": {
+    "express": "^4.7.4",
+    "body-parser": "~1.5.2",
+    "mongoose": "~3.8.22"
+
+
+  },
+  "scripts": {
+    "start": "nodemon server/index.js"
+  }
+
+}
