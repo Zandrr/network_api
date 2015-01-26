@@ -44,15 +44,16 @@ module.exports = function(app){
   });
 
   app.put('/person/:id', function(req, res){
-    var update = req.body;
-    console.log(update);
-    Person.findOneAndUpdate({id:req.params.id}, { $set: update }, function(err,person){
+    var query = {id:req.params.id};
+    var update = {first_name:req.query.first_name,last_name:req.query.last_name,email:req.query.email,country:req.query.country};
+    var options = {new:true};
+    Person.findOneAndUpdate(query, update, options, function(err,person){
       if(err) res.send(err);
       res.send(person);
     });
   }); 
-  // curl -X PUT -d last_name=fermin http://localhost:3000/person/1005
 };
+  // curl -X PUT -d last_name=fermin http://localhost:3000/person/1005
 // http://localhost:3000/person?id=1001&first_name=edward&last_name=zhu&email=zhued@zhued.com&country=china
 
 //make function for count & any other function we need
