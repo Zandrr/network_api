@@ -11,6 +11,7 @@ var personSchema = {
   country: String
 
 }
+
 function personinit(){
   return mongoose.model('Person', personSchema, 'people');
 }

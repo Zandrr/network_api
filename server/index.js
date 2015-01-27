@@ -3,9 +3,7 @@ var express     = require('express'),
     routes      = require('./routes'),
     http        = require('http');
 
-
     var app = express(); // Make app using Express framework
-
 
     app.set('port', process.env.PORT || 3000);
     app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,11 +13,8 @@ var express     = require('express'),
 
     var server = http.createServer(app);
 
-
   server.listen(app.get('port'), function(){
     console.log("listening on port " + app.get('port'));
   });
-
-
 
 module.exports = app;
