@@ -69,6 +69,7 @@ module.exports = function(app){
     Person.count(function(err,count){
       Person.create({id:count,first_name:req.query.first_name,last_name:req.query.last_name,email:req.query.email,country:req.query.country}, function(err,doc){
         if(err) res.send(err);
+        console.log(req.query);
         res.status(200).send(doc);
       });
     });
