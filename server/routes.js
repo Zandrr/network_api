@@ -1,5 +1,7 @@
-var db = require('./mongo.js');
+var db        = require('./mongo.js');
+
 var Person = db.personinit();
+
 
 module.exports = function(app){
 
