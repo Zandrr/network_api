@@ -27,8 +27,8 @@ module.exports = function(app){
 
   app.put('/person/:id', function(req, res){
     var query = {id:req.params.id};
-    var update = {first_name:req.query.first_name,last_name:req.query.last_name,email:req.query.email,country:req.query.country};
-    var options = {new:true};
+    var update = req.query;
+    var options = {new:true, $set:update};
     Person.findOneAndUpdate(query, update, options, function(err,person){
       if(err) res.send(err);
       res.status(200).send(person);
