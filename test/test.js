@@ -107,8 +107,7 @@ var request = require('supertest'),
         request(app).get('/count')
             .end(function(err,res){
                 if(err){ return err }
-                    // console.log(res.text)
-                expect(res.text).to.equal('')
+                expect(res.text).to.equal("0")
             });
       });
     });
@@ -116,25 +115,26 @@ var request = require('supertest'),
 
     describe('ADD database', function(){
       it('ADD the database..', function(done){
-        request(app).get('/people/drop');
-        request(app).get('/people/add').expect(200, done);
+        request(app).get('/people/drop').expect(200);
+        request(app).get('/people/add').expect(200);
         request(app).get('/count')
             .end(function(err,res){
                 if(err){ return err }
-                    console.log(res.text)
-                expect(res.text).to.equal(1000)
-            });
+                expect(res.text).to.equal("1000")
+            })
+        done();
       });
     });
 
     describe('RESET database', function(){
       it('RESETS the database..', function(done){
-        request(app).get('/people/reset').expect(200, done);
+        request(app).get('/people/reset').expect(200);
         request(app).get('/count')
             .end(function(err,res){
                 if(err){ return err }
-                expect(res.text).to.equal(1000)
+                expect(res.text).to.equal("1000")
             });
+            done();
       });
     });
 
