@@ -15,9 +15,8 @@
     "body-parser": "~1.5.2",
     "mongoose": "~3.8.22",
     "supertest": "0.7.0",
-    "mocha": "1.11.0"
-
-
+    "mocha": "1.11.0",
+    "mockgoose": "1.10.7"
   },
   "scripts": {
     "test": "mocha",

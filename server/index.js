@@ -4,8 +4,9 @@ var express     = require('express'),
     http        = require('http');
 
     var app = express(); // Make app using Express framework
-
     app.set('port', process.env.PORT || 3000);
+    app.set('env', process.env.NODE_ENV || 'development');
+
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
 
@@ -14,7 +15,7 @@ var express     = require('express'),
     var server = http.createServer(app);
 
   server.listen(app.get('port'), function(){
-    console.log("listening on port " + app.get('port'));
+    console.log("listening on port " + app.get('port') + "In "+ app.get('env') + " mode");
   });
 
 module.exports = app;

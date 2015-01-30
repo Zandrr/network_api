@@ -1,6 +1,14 @@
 var request = require('supertest'),
     express = require('express'),
-    app     = require('../server/index.js');
+    app     = require('../server/index.js'),
+    mongoose = require('../server/mongo.js'),
+    mockgoose = require('mockgoose');
+
+    if(process.env.NODE_ENV != 'test'){
+        console.log('in test mode');
+        mockgoose(mongoose);
+    }
+
 
     describe('GET', function(){
       it('responds with a list of people objects in JSON', function(done){
