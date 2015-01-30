@@ -23,6 +23,7 @@ var request = require('supertest'),
       for(var i = 0; i < data.length; i++){
         new Person(data[i]).save();
       }
+      done();
     });
 
     
@@ -31,18 +32,32 @@ var request = require('supertest'),
 
     describe('GET single person', function(){
       it('responds with a single person object in JSON', function(done){
-        request(app)
-        .get('/person/1')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect([{
-        _id: "54c43aaf25aa864371193fa9",
-        id: 1,
-        first_name: "Melissa",
-        last_name: "Butler",
-        email: "mbutler0@opensource.org",
-        country: "China"}])
-        .expect(200,done);
+        request(app).get('/person/1')
+            // .type('form')
+            // .send({field: "Test string."})
+            .end(function(err,res){
+                if(err){ console.log(err)}
+                expect(res).to.exist;
+                expect(res.status).to.equal(200);
+                expect(res.text).to.contain('"first_name":"Melissa"');
+                expect(res.text).to.contain('"last_name":"Butler"');
+                expect(res.text).to.contain('"email":"mbutler0@opensource.org"');
+                expect(res.text).to.contain('"country":"China"');
+                done();
+        })
+        // request(app)
+        // .get('/person/1')
+        // .set('Accept', 'application/json')
+        // .expect('Content-Type', /json/)
+        // .expect([{
+        // _id: "54c43aaf25aa864371193fa9",
+        // id: 1,
+        // first_name: "Melissa",
+        // last_name: "Butler",
+        // email: "mbutler0@opensource.org",
+        // country: "China"}])
+        // .expect(200,done);
+
       });
     });
 
@@ -50,7 +65,7 @@ var request = require('supertest'),
       it('deletes a single person', function(done){
         request(app)
         .del('/person/57')
-        .expect(mockgoose.count().should.equal(999))
+        .expect(Person.count({}, function(err, count){ return count}).should.equal(999))
         .expect(200, done);
       });
     });

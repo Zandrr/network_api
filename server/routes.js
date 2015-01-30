@@ -9,7 +9,9 @@ module.exports = function(app){
 // Returns the number of entries in the field
 // ***
   app.get('/', function(req,res){
-    res.send('It works!')
+    Person.count(function(err,count){
+      console.log(count)
+    });
   });
 
 
