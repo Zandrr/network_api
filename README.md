@@ -36,6 +36,9 @@ Team wew :shipit:
 	curl http://localhost:3000/people/add
 
 
+##To Test!
+
+	npm test
 
 
 ##What You Can Do!

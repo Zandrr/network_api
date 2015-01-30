@@ -101,4 +101,41 @@ var request = require('supertest'),
       });
     });
 
+    describe('DROP database', function(){
+      it('drops the database..', function(done){
+        request(app).get('/people/drop').expect(200, done);
+        request(app).get('/count')
+            .end(function(err,res){
+                if(err){ return err }
+                    // console.log(res.text)
+                expect(res.text).to.equal('')
+            });
+      });
+    });
+
+
+    describe('ADD database', function(){
+      it('ADD the database..', function(done){
+        request(app).get('/people/drop');
+        request(app).get('/people/add').expect(200, done);
+        request(app).get('/count')
+            .end(function(err,res){
+                if(err){ return err }
+                    console.log(res.text)
+                expect(res.text).to.equal(1000)
+            });
+      });
+    });
+
+    describe('RESET database', function(){
+      it('RESETS the database..', function(done){
+        request(app).get('/people/reset').expect(200, done);
+        request(app).get('/count')
+            .end(function(err,res){
+                if(err){ return err }
+                expect(res.text).to.equal(1000)
+            });
+      });
+    });
+
 
