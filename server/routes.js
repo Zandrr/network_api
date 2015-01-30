@@ -92,7 +92,7 @@ module.exports = function(app){
   app.get('/people/drop', function(req, res) {
     Person.remove({}, function(err){
       if (err) res.send(err);
-      res.status(200).send("database successfully dropped");
+      res.status(200).send("Database successfully dropped.");
     });
   });
 
@@ -100,7 +100,17 @@ module.exports = function(app){
     for(var i = 0; i < mockdata.length; i++){
       new Person(mockdata[i]).save();
     }
-    res.status(200).send("database successfully added");
+    res.status(200).send("Database successfully added from mockdata.json.");
+  });
+
+  app.get('people/reset', function(req, res){
+    Person.remove({}, function(err){
+      if (err) res.send(err);
+       for(var i = 0; i < mockdata.length; i++){
+          new Person(mockdata[i]).save();
+        }
+      res.status(200).send("Database successfully reset.");
+    });
   });
 
 // ***
