@@ -10,7 +10,7 @@ module.exports = function(app){
 // ***
   app.get('/count', function(req,res){
     Person.count(function(err,count){
-      console.log(count)
+      res.status(200).send(count)
     });
   });
 
