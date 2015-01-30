@@ -1,5 +1,5 @@
 var db        = require('./mongo.js');
-
+var mockdata = require('../mockdata.json')
 var Person = db.personinit();
 
 
@@ -76,6 +76,32 @@ module.exports = function(app){
     });
   });
 
+// ***
+// Inserts a new entry into the database
+// ***
+  app.post('/person', function(req,res){
+    Person.count(function(err,count){
+      Person.create({id:count,first_name:req.query.first_name,last_name:req.query.last_name,email:req.query.email,country:req.query.country}, function(err,doc){
+        if(err) res.send(err);
+        res.status(200).send(doc);
+      });
+    });
+  });
+
+
+  app.get('/people/drop', function(req, res) {
+    Person.remove({}, function(err){
+      if (err) res.send(err);
+      res.status(200).send("database successfully dropped");
+    });
+  });
+
+  app.get('/people/add', function(req, res){
+    for(var i = 0; i < mockdata.length; i++){
+      new Person(mockdata[i]).save();
+    }
+    res.status(200).send("database successfully added");
+  });
 
 // ***
 // COUNT - Find the number of sets that have the same attributes of a certain field
