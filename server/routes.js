@@ -103,7 +103,7 @@ module.exports = function(app){
     res.status(200).send("Database successfully added from mockdata.json.");
   });
 
-  app.get('people/reset', function(req, res){
+  app.get('/people/reset', function(req, res){
     Person.remove({}, function(err){
       if (err) res.send(err);
        for(var i = 0; i < mockdata.length; i++){
