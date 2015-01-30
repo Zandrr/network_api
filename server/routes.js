@@ -88,7 +88,9 @@ module.exports = function(app){
     });
   });
 
-
+// ***
+// Drops database
+// ***
   app.get('/people/drop', function(req, res) {
     Person.remove({}, function(err){
       if (err) res.send(err);
@@ -96,6 +98,9 @@ module.exports = function(app){
     });
   });
 
+// ***
+// Populate data from mockdata.json
+// ***
   app.get('/people/add', function(req, res){
     for(var i = 0; i < mockdata.length; i++){
       new Person(mockdata[i]).save();
@@ -103,6 +108,9 @@ module.exports = function(app){
     res.status(200).send("Database successfully added from mockdata.json.");
   });
 
+// ***
+// Clear database and populate data from mockdata.json
+// ***
   app.get('/people/reset', function(req, res){
     Person.remove({}, function(err){
       if (err) res.send(err);
