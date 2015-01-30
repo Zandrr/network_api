@@ -8,7 +8,7 @@ module.exports = function(app){
 // ***
 // Returns the number of entries in the field
 // ***
-  app.get('/', function(req,res){
+  app.get('/count', function(req,res){
     Person.count(function(err,count){
       console.log(count)
     });
