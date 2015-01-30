@@ -15,7 +15,7 @@ var express     = require('express'),
     var server = http.createServer(app);
 
   server.listen(app.get('port'), function(){
-    console.log("listening on port " + app.get('port') + "In "+ app.get('env') + " mode");
+    console.log("Listening on port " + app.get('port') + " in "+ app.get('env') + " mode");
   });
 
 module.exports = app;

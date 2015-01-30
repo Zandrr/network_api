@@ -10,8 +10,7 @@ module.exports = function(app){
 // ***
   app.get('/', function(req,res){
     Person.count(function(err,count){
-      var num = count.toString();
-      res.send(num);
+      console.log(count)
     });
   });
 
@@ -69,7 +68,7 @@ module.exports = function(app){
 // ***
   app.post('/person', function(req,res){
     Person.count(function(err,count){
-      Person.create({id:count,first_name:req.query.first_name,last_name:req.query.last_name,email:req.query.email,country:req.query.country}, function(err,doc){
+      Person.create({id:count+1,first_name:req.query.first_name,last_name:req.query.last_name,email:req.query.email,country:req.query.country}, function(err,doc){
         if(err) res.send(err);
         res.status(200).send(doc);
       });
@@ -121,9 +120,6 @@ module.exports = function(app){
     });
   });
 
-// ***
-// COUNT - Find the number of sets that have the same attributes of a certain field
-// ***
 
 
 
