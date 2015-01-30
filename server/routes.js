@@ -119,13 +119,5 @@ module.exports = function(app){
       res.status(200).send("Database successfully reset.");
     });
   });
-
-
-
-
-
-//make function for count & any other function we need
-//write tests
-//use cooler data
 };
 
